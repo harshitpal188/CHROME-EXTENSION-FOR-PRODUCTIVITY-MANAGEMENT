@@ -148,3 +148,9 @@ The extension shows motivational quotes when blocking distracting sites to encou
 - Verify the backend server is running on the correct port
 
 ## OUTPUT
+
+<img width="1366" height="768" alt="Image" src="https://github.com/user-attachments/assets/c1201166-341d-458f-9ffa-69543c231af5" />
+
+<img width="1366" height="768" alt="Image" src="https://github.com/user-attachments/assets/a7957695-302f-445d-82fd-dfd26c46ec7f" />
+
+<img width="1366" height="768" alt="Image" src="https://github.com/user-attachments/assets/b6b0bbf7-b5e8-492e-9a12-75d84aac6029" />
