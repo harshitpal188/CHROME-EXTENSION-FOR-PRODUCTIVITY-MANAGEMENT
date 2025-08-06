@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Tracker</title>
+    <style>
+        body {
+            width: 350px;
+            min-height: 400px;
+            margin: 0;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .header p {
+            margin: 5px 0 0 0;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .stat-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .stat-value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .time-list {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+            max-height: 200px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .time-list h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .time-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .time-item:last-child {
+            border-bottom: none;
+        }
+
+        .site-name {
+            font-size: 12px;
+            opacity: 0.9;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .site-time {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-danger {
+            background: rgba(255, 59, 48, 0.8);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 59, 48, 1);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            opacity: 0.7;
+        }
+
+        .empty-state p {
+            margin: 0;
+            font-size: 12px;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        .blocked-sites {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .blocked-sites h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .site-input {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .site-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 12px;
+        }
+        
+        .site-input input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .site-input .btn {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        
+        .blocked-site-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .blocked-site-item:last-child {
+            border-bottom: none;
+        }
+        
+        .blocked-site-name {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        
+        .remove-site-btn {
+            background: rgba(255, 59, 48, 0.8);
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .remove-site-btn:hover {
+            background: rgba(255, 59, 48, 1);
+        }
+        
+        .auth-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            font-size: 11px;
+        }
+        
+        .auth-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff6b6b;
+        }
+        
+        .auth-indicator.connected {
+            background: #51cf66;
+        }
+        
+        .auth-text {
+            opacity: 0.9;
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .logout-btn {
+            background: rgba(255, 59, 48, 0.8);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+            width: 100%;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 59, 48, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Productivity Tracker</h1>
+        <p>Track your time spent on websites</p>
+        <div id="authStatus" class="auth-status">
+            <span id="authIndicator" class="auth-indicator"></span>
+            <span id="authText" class="auth-text">Checking login status...</span>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat-item">
+            <span class="stat-label">Today's Total Time</span>
+            <span class="stat-value" id="todayTotalTime">0m 0s</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Sites Visited Today</span>
+            <span class="stat-value" id="todaySitesCount">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Most Visited Today</span>
+            <span class="stat-value" id="todayMostVisited">-</span>
+        </div>
+    </div>
+
+    <div class="time-list">
+        <h3>Today's Time by Site</h3>
+        <div id="todayTimeList">
+            <div class="empty-state">
+                <p>No data yet. Start browsing to see your time tracking!</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="time-list">
+        <h3>All Time by Site</h3>
+        <div id="allTimeList">
+            <div class="empty-state">
+                <p>No data yet. Start browsing to see your time tracking!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-primary" id="refreshBtn">Refresh</button>
+        <button class="btn btn-danger" id="clearBtn">Clear Data</button>
+    </div>
+    
+    <button class="logout-btn" id="logoutBtn">Logout</button>
+    <button class="debug-btn" id="debugBtn" style="margin-top: 5px; background: #666; font-size: 10px;">Debug Connection</button>
+    
+    <div class="blocked-sites">
+        <h3>Blocked Sites</h3>
+        <div class="site-input">
+            <input type="text" id="newSiteInput" placeholder="Add site to block (e.g., facebook.com)">
+            <button class="btn btn-primary" id="addSiteBtn">Add</button>
+        </div>
+        <div id="blockedSitesList">
+            <!-- Blocked sites will be listed here -->
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html> 

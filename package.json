@@ -1,0 +1,31 @@
+{
+  "name": "productivity-tracker",
+  "version": "1.0.0",
+  "description": "A comprehensive productivity tracking system with browser extension and web dashboard",
+  "main": "index.js",
+  "scripts": {
+    "package-extension": "node package-extension.js",
+    "install-deps": "npm install --prefix client && npm install --prefix server",
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "start": "npm start --prefix server"
+  },
+  "keywords": [
+    "productivity",
+    "time-tracking",
+    "browser-extension",
+    "react",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "archiver": "^5.3.1",
+    "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "axios": "^1.11.0"
+  }
+}
