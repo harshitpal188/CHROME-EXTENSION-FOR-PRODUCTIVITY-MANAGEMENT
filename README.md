@@ -1,4 +1,19 @@
-# Productivity Tracker
+
+# Real-time Code Collaboration Tool
+
+COMPANY: CODTECH IT SOLUTIONS
+
+NAME: HARSHIT PAL
+
+INTERN ID: CT04DH1287
+
+DOMAIN: MERN STACK WEB DEVELOPMENT
+
+DURATION: 4 WEEKS
+
+MENTOR: NEELA SANTOSH
+
+# Description of project
 
 A comprehensive productivity tracking system with browser extension and web dashboard.
 
@@ -10,20 +25,6 @@ A comprehensive productivity tracking system with browser extension and web dash
 - **Site Blocking**: Block distracting websites with motivational redirects
 - **Real-time Tracking**: Active time tracking with visual indicators
 
-## New Features Added
-
-### 1. Loading Spinners
-- Added loading spinners while fetching reports in both popup and dashboard
-- Visual feedback during data loading operations
-
-### 2. Logout Functionality
-- Added logout button in extension popup
-- Added logout button in web dashboard
-- Clears authentication data and resets to local-only mode
-
-### 3. Extension Packaging
-- Easy packaging script to create distributable extension
-- Instructions for loading in Chrome
 
 ## Installation
 
@@ -121,8 +122,6 @@ The backend provides these main endpoints:
 ### Blocked Sites
 Default blocked sites include:
 - facebook.com
-- youtube.com
-- twitter.com
 - instagram.com
 - And many more...
 
@@ -148,14 +147,4 @@ The extension shows motivational quotes when blocking distracting sites to encou
 - Check network connectivity
 - Verify the backend server is running on the correct port
 
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-MIT License - see LICENSE file for details. 
+## OUTPUT
